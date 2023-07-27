@@ -16,6 +16,15 @@ import sqlite3
 app = Flask(__name__)
 
 def tokenize(text):
+    '''
+    Tokenization function for input message
+
+    Parameters:
+    text (str): the input message
+
+    Returns:
+    list: The token of the message.
+    '''
     tokens = word_tokenize(text)
     lemmatizer = WordNetLemmatizer()
 
@@ -38,6 +47,10 @@ model = joblib.load("classifier.pkl")
 @app.route('/')
 @app.route('/index')
 def index():
+    '''
+    The GET API "/index" or "/"
+    It will plot two bar chart inside the "master.html" and return back to the user this html file.
+    '''
     genre_counts = df.groupby('genre').count()['message']
     genre_names = list(genre_counts.index)
 
@@ -93,6 +106,11 @@ def index():
 # web page that handles user query and displays model results
 @app.route('/go')
 def go():
+    '''
+    The GET API "/go"
+    It will pass the input message of the user to the model and return back the go.html which has been colored the category block.
+
+    '''
     # save user input in query
     query = request.args.get('query', '') 
     print(query)
