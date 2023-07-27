@@ -63,7 +63,7 @@ def build_model():
         ('clf', RandomForestClassifier())
     ])
     parameters = {
-        'clf__estimator__n_estimators' : [50, 100]
+        'clf__n_estimators' : [50, 100]
     }
 
     cv = GridSearchCV(pipeline, param_grid=parameters)
@@ -112,7 +112,7 @@ def main():
         print('Please provide the filepath of the disaster messages database '\
               'as the first argument and the filepath of the pickle file to '\
               'save the model to as the second argument. \n\nExample: python '\
-              'train_classifier.py ../data/DisasterResponse.db classifier.pkl')
+              'models/train_classifier.py DisasterResponse.db classifier.pkl')
 
 
 if __name__ == '__main__':
